@@ -1,4 +1,4 @@
 build:
   image: nice/ld-docker-build:latest
   commands:
-    - ./build.sh
+    - ./build.sh PublishNuget nugetkey=${APIKEY}
