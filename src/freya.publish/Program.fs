@@ -13,6 +13,7 @@ type Arguments =
   | Db of string
   | User of string
   | Pass of string
+  | Reasoning
   | Output of string
   | Commit of string
   | Context of string
@@ -25,6 +26,7 @@ type Arguments =
       | Db _ -> "Stardog database"
       | User _ -> "Username"
       | Pass _ -> "Password"
+      | Reasoning _ -> "Specify if you require reasoning"
       | Output _ -> "Perform the specified action"
       | Context _ -> "Remote json ld context to use"
       | Commit _ -> "Commit hash to publish"
@@ -53,7 +55,7 @@ let main argv =
   let stardog =
     Store.Store.stardog (args.GetResult <@ Connection @>)
       (args.GetResult <@ Db @>) (args.GetResult <@ User @>)
-      (args.GetResult <@ Pass @>)
+      (args.GetResult <@ Pass @>) (args.Contains <@ Reasoning @>)
   let commit =
     Uri.from
       (sprintf "http://ld.nice.org.uk/prov/commit#%s"
