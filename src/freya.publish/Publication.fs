@@ -165,12 +165,12 @@ module Publication =
     opts.SetExplicit(System.Nullable<_>(false))
     let xr =
       (resources
-       |> PSeq.collect ( entityForResource |> retry )
-       |> PSeq.map ( subGraph |> retry )
-       |> PSeq.map
+       |> Seq.collect ( entityForResource |> retry )
+       |> Seq.map ( subGraph |> retry )
+       |> Seq.map
             (Resource.fromType
                (Uri.from "http://www.w3.org/2002/07/owl#NamedIndividual"))
       |> Seq.filter (List.isEmpty >> not))
-    PSeq.map
+    Seq.map
       ((Resource.compatctedJsonLD opts (Context(context, opts)))
        >> elasiticerise) xr
