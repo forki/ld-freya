@@ -101,7 +101,7 @@ module Publication =
                 group by ?commit
             }
             }
-            order by desc(?count)
+            order by ?count
             LIMIT 1
             """ [ ("resource", Param.Uri resource)
                   ("head", Param.Uri commit) ]
