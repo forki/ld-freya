@@ -44,6 +44,7 @@
       <Link>paket-files\YaafFSharpScripting.fs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Config.fs" />
     <Compile Include="GuardedAwaitObservable.fs" />
     <Compile Include="Model.fs" />
     <Compile Include="MarkdownExtraction.fs" />
