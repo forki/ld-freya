@@ -35,7 +35,7 @@ module Tools =
   
   let convertMarkdown x t = 
     step (convertMarkdownS (x, 
-                            { Output = Path.from (Config.pandocOutputDir + "/work")
+                            { Output = Path.from (Config.outputDir)
                               ToolMatch = t
                               WorkingDir = Path.from "." }))
   

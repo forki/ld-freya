@@ -1,3 +1,3 @@
 module Config
 
-let mutable pandocOutputDir = ""
+let mutable outputDir = ""

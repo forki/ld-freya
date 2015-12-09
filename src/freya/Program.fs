@@ -76,7 +76,6 @@ type Arguments =
   | Action of string
   | Root of string
   | Output of string
-  | PandocOutputDir of string
   | Param of string * string
   interface IArgParserTemplate with
     member s.Usage =
@@ -87,7 +86,6 @@ type Arguments =
       | Action _ -> "Perform the specified action"
       | Root _ -> "Directory to scan for build files"
       | Output _ -> "Directory to save compilaton output"
-      | PandocOutputDir _ -> "Directory to save pandoc output files"
       | Param _ -> "Key value pair in the form key=value for action"
 
 
@@ -105,8 +103,8 @@ let main argv =
     printfn """Usage: freya [options]
                 %s""" (parser.Usage())
     exit 1
+  Config.outputDir <- args.GetResult <@ Output @>
   let xrp = Freya.Builder.exec (makeFiles (args.GetResult <@ Root @>))
-  Config.pandocOutputDir = args.GetResult <@ PandocOutputDir @>
 
   let prov =
     match args.TryGetResult <@ Provenance @> with
